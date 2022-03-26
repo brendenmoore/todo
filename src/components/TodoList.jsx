@@ -6,7 +6,7 @@ function TodoList() {
   return (
 	<div className="">
 		<AddTodo/>
-		<ul className="w-full space-y-5 mt-5">
+		<ul className="w-full space-y-5 mt-14">
 			<TodoItem></TodoItem>
 			<TodoItem></TodoItem>
 			<TodoItem></TodoItem>
