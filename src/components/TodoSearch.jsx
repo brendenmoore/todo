@@ -13,7 +13,8 @@ function TodoSearch(props) {
 				rounded-lg 
 				text-gray-800
 				border-gray-200
-				focus:border-gray-200 focus:bg-white focus:ring-0"/>
+				focus:border-gray-200 focus:bg-white focus:ring-0
+		"/>
 	)
 }
 
