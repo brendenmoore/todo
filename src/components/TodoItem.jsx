@@ -10,7 +10,7 @@ function TodoItem({ todo: { title, completed, id } }) {
 		<li className={`
 		w-full 
 		p-3 md:p-4
-		bg-gray-200 
+		bg-gray-100 
 		text-gray-800 
 		text-lg sm:text-xl md:3xl
 		flex 
