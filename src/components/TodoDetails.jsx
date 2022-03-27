@@ -15,7 +15,7 @@ function TodoDetails() {
 			setState({todo: todo, user: user})
 		}
 		fetchData()
-	}, [])
+	}, [id])
 
 	return user ? (
 		<div className="">
