@@ -6,8 +6,8 @@ import {Routes, Route} from 'react-router-dom'
 function App() {
 
   return (
-    <div className="container mt-20">
-      <div  className="bg-white p-5 rounded-lg">
+    <div className="container mt-0 sm:mt-8">
+      <div  className="bg-white p-5 rounded-none sm:rounded-lg max-w-3xl m-auto">
         <Routes>
           <Route path="/" element={<TodoList />} />
           <Route path="/:id" element={<TodoDetails />} />

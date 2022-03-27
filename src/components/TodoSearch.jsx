@@ -6,14 +6,11 @@ function TodoSearch(props) {
 	}
 	return (
 		<form>
-			<input type="text" name="todo" id="todo" placeholder="Search" value={props.query} onChange={handleChange}
+			<input type="text" name="searchQuery" placeholder="Search" value={props.query} autoComplete="false" onChange={handleChange}
 				className="
-				mt-1
-				p-5
+				p-3
 				w-full 
-				text-2xl
-				sm:text-3xl
-				md:text-5xl
+				text-lg sm:text-xl md:text-2xl
 				rounded-lg 
 				text-gray-800
 				border-gray-200

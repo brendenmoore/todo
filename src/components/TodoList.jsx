@@ -37,7 +37,7 @@ function TodoList() {
 	return (
 		<div>
 			<TodoSearch query={searchQuery} onChange={handleSearchChange}/>
-			<button onClick={toggleSort} className="my-5 text-xl text-gray-600 pl-2">Sort {sortDirection === "DESC" ? "▼" : "▲"}</button>
+			<button onClick={toggleSort} className="my-5 text-md sm:text-lg text-gray-600 pl-2">Sort {sortDirection === "DESC" ? "▼" : "▲"}</button>
 			<ul className="w-full space-y-5">
 				{todos
 				.filter(todo => todo.title.includes(searchQuery))
