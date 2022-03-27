@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react'
 import { getAllTodos } from '../todoService'
 import TodoSearch from './TodoSearch'
 import TodoItem from './TodoItem'
+import Pagination from './Pagination'
 
 function TodoList() {
 
@@ -28,12 +29,19 @@ function TodoList() {
 		<div>
 			<TodoSearch query={searchQuery} onChange={setSearchQuery} />
 			<button onClick={toggleSort} className="my-3 sm:my-5 text-md sm:text-lg text-gray-600 pl-2">Sort {sortDirection === "DESC" ? "▼" : "▲"}</button>
-			<ul className="w-full space-y-3 sm:space-y-5">
-				{todos
-					.filter(todo => todo.title.toLowerCase().includes(searchQuery.toLowerCase()))
-					.sort(sortFunction)
-					.map(todo => <TodoItem key={todo.id} todo={todo}></TodoItem>)}
-			</ul>
+			{todos.length > 0 ? (
+				<Pagination 
+					RenderComponent={TodoItem} 
+					wrapperClassName="w-full space-y-3 sm:space-y-5" 
+					pageLimit={5} 
+					dataLimit={10}
+					data={todos
+						.filter(todo => todo.title.toLowerCase().includes(searchQuery.toLowerCase()))
+						.sort(sortFunction)}
+				/>
+			) : (
+				<h1>No Todos to display</h1>
+			)}
 		</div>
 	)
 }
