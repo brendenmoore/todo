@@ -8,8 +8,11 @@ function TodoList() {
 	const [todos, setTodos] = useState([])
 	const [sortDirection, setSortDirection] = useState("ASC")
 
-	useEffect(async () => {
-		setTodos((await getAllTodos()).slice(0, 10))
+	useEffect(() => {
+		async function fetchData() {
+			setTodos((await getAllTodos()).slice(0, 10))
+		}
+		fetchData();
 	}, [])
 
 	const sortFunction = (a, b) => {
