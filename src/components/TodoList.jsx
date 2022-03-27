@@ -40,7 +40,7 @@ function TodoList() {
 			<button onClick={toggleSort} className="my-5 text-md sm:text-lg text-gray-600 pl-2">Sort {sortDirection === "DESC" ? "▼" : "▲"}</button>
 			<ul className="w-full space-y-5">
 				{todos
-				.filter(todo => todo.title.includes(searchQuery))
+				.filter(todo => todo.title.toLowerCase().includes(searchQuery.toLowerCase()))
 				.sort(sortFunction)
 				.map(todo => <TodoItem key={todo.id} todo={todo}></TodoItem>) }
 			</ul>
