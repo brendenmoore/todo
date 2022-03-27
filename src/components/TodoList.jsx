@@ -35,7 +35,7 @@ function TodoList() {
 	}
 
 	return (
-		<div className="bg-white p-5 rounded-lg">
+		<div>
 			<TodoSearch query={searchQuery} onChange={handleSearchChange}/>
 			<button onClick={toggleSort} className="my-5 text-xl text-gray-600 pl-2">Sort {sortDirection === "DESC" ? "▼" : "▲"}</button>
 			<ul className="w-full space-y-5">
