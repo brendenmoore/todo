@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useState } from 'react'
 
 function Pagination({ data, RenderComponent, pageLimit, dataLimit, wrapperClassName }) {
 
@@ -15,33 +15,32 @@ function Pagination({ data, RenderComponent, pageLimit, dataLimit, wrapperClassN
 		setCurrentPage(Number(event.target.textContent))
 	}
 
-	const getPaginatedData = () => {
+	function getPaginatedData() {
 		const startIndex = currentPage * dataLimit - dataLimit
 		const endIndex = startIndex + dataLimit
 		return data.slice(startIndex, endIndex)
 	}
 
-	const getPaginationGroup = () => {
-		// let start = Math.floor(currentPage - pageLimit / 2)
-		let start = currentPage < pageLimit / 2 ? 0 : Math.floor(currentPage - pageLimit / 2)
+	function getPaginationGroup() {
+		let start = Math.floor(currentPage - pageLimit / 2)
 		if (currentPage < pageLimit / 2) {
 			start = 0
 		}
 		if (currentPage > pages - pageLimit + 1) {
 			start = pages - pageLimit
 		}
-		// const start = Math.floor((currentPage - 1) / pageLimit) * pageLimit
 		return new Array(pageLimit).fill().map((_, idx) => start + idx + 1)
 	}
 
 	return (
 		<div>
+			{/* Items Wrapper */}
 			<div className={wrapperClassName}>
 				{getPaginatedData().map((d, idx) => (
-					<RenderComponent key={idx} todo={d}/>
+					<RenderComponent key={idx} todo={d} />
 				))}
 			</div>
-
+			{/* Page Navigation */}
 			<div className="text-gray-700 text-lg mt-5 flex justify-around pagination">
 				<button onClick={goToPreviousPage} disabled={currentPage === 1} className="disabled:text-gray-200">Previous</button>
 				{getPaginationGroup().map((pageNumber, index) => (
