@@ -1,16 +1,17 @@
 import React, { useEffect, useState } from 'react'
 import { getAllTodos } from '../todoService'
-import AddTodo from './AddTodo'
+import TodoSearch from './TodoSearch'
 import TodoItem from './TodoItem'
 
 function TodoList() {
 
 	const [todos, setTodos] = useState([])
 	const [sortDirection, setSortDirection] = useState("ASC")
+	const [searchQuery, setSearchQuery] = useState("")
 
 	useEffect(() => {
 		async function fetchData() {
-			setTodos((await getAllTodos()).slice(0, 10))
+			setTodos((await getAllTodos()))
 		}
 		fetchData();
 	}, [])
@@ -29,13 +30,20 @@ function TodoList() {
 		setSortDirection(sortDirection === "ASC" ? "DESC" : "ASC")
 	}
 
+	const handleSearchChange = (query) => {
+		setSearchQuery(query)
+	}
+
 	return (
 		<div className="bg-white p-5 rounded-lg">
-			<AddTodo />
+			<TodoSearch query={searchQuery} onChange={handleSearchChange}/>
 			<button onClick={toggleSort} className="my-5 text-xl text-gray-600 pl-2">Sort {sortDirection === "DESC" ? "▼" : "▲"}</button>
-			{todos && <ul className="w-full space-y-5">
-				{todos.sort(sortFunction).map(todo => <TodoItem key={todo.id} todo={todo}></TodoItem>) }
-			</ul> }
+			<ul className="w-full space-y-5">
+				{todos
+				.filter(todo => todo.title.includes(searchQuery))
+				.sort(sortFunction)
+				.map(todo => <TodoItem key={todo.id} todo={todo}></TodoItem>) }
+			</ul>
 		</div>
 	)
 }

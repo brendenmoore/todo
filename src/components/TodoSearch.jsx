@@ -1,9 +1,12 @@
 import React from 'react'
 
-function AddTodo() {
+function TodoSearch(props) {
+	const handleChange = (e) => {
+		props.onChange(e.target.value)
+	}
 	return (
 		<form>
-			<input type="text" name="todo" id="todo" placeholder="Search"
+			<input type="text" name="todo" id="todo" placeholder="Search" value={props.query} onChange={handleChange}
 				className="
 				mt-1
 				p-5
@@ -19,4 +22,4 @@ function AddTodo() {
 	)
 }
 
-export default AddTodo
+export default TodoSearch
