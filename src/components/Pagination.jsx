@@ -8,7 +8,7 @@ function Pagination({ data, RenderComponent, siblingCount, dataLimit, wrapperCla
 	useEffect(() => {
 		setPages(Math.round(data.length / dataLimit))
 		setCurrentPage(1)
-	}, [data.length, dataLimit])
+	}, [data, dataLimit])
 
 	function goToNextPage() {
 		setCurrentPage((page) => page + 1)
