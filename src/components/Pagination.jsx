@@ -1,9 +1,14 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 
-function Pagination({ data, RenderComponent, pageLimit, dataLimit, wrapperClassName }) {
+function Pagination({ data, RenderComponent, siblingCount, dataLimit, wrapperClassName }) {
 
-	const [pages] = useState(Math.round(data.length / dataLimit));
-	const [currentPage, setCurrentPage] = useState(1);
+	const [pages, setPages] = useState(Math.round(data.length / dataLimit))
+	const [currentPage, setCurrentPage] = useState(1)
+
+	useEffect(() => {
+		setPages(Math.round(data.length / dataLimit))
+		setCurrentPage(1)
+	}, [data.length, dataLimit])
 
 	function goToNextPage() {
 		setCurrentPage((page) => page + 1)
@@ -22,14 +27,18 @@ function Pagination({ data, RenderComponent, pageLimit, dataLimit, wrapperClassN
 	}
 
 	function getPaginationGroup() {
-		let start = Math.floor(currentPage - pageLimit / 2)
-		if (currentPage < pageLimit / 2) {
-			start = 0
+		console.log(pages)
+		if (pages < siblingCount + 1) {
+			return range(1, pages)
 		}
-		if (currentPage > pages - pageLimit + 1) {
-			start = pages - pageLimit
-		}
-		return new Array(pageLimit).fill().map((_, idx) => start + idx + 1)
+		let leftIndex = Math.max(currentPage - siblingCount, 1)
+		let rightIndex = Math.min(currentPage + siblingCount, pages)
+		return range(leftIndex, rightIndex)
+	}
+
+	function range(start, end) {
+		let length = end - start + 1
+		return Array.from({ length }, (_, idx) => idx + start)
 	}
 
 	return (

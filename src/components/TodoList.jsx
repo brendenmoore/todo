@@ -32,9 +32,9 @@ function TodoList() {
 			{todos.length > 0 ? (
 				<Pagination 
 					RenderComponent={TodoItem} 
-					wrapperClassName="w-full space-y-3 sm:space-y-5" 
-					pageLimit={5} 
+					wrapperClassName="w-full space-y-3 sm:space-y-5"
 					dataLimit={10}
+					siblingCount={2}
 					data={todos
 						.filter(todo => todo.title.toLowerCase().includes(searchQuery.toLowerCase()))
 						.sort(sortFunction)}
